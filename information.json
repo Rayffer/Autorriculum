@@ -1,0 +1,39 @@
+{
+    "Localization" : {
+        "PersonalData" : "Personal data",
+        "Name" : "Name",
+        "JobName": "Job title",
+        "BirthDate" : "Birth date",
+        "PhoneNumber": "Phone number",
+        "Email": "e-mail",
+        "Education" : "Education",
+        "Languages" : "Languages"
+    },
+    "Name" : "John Doe",
+    "JobName": "Software Engineer",
+    "BirthDate" : "14/05/1700",
+    "Email": "john.doe@gmail.com",
+    "PhoneNumber": "123456789",
+    "EducationEntries" : [
+        {
+            "Title" : "Lorem Ipsum Title",
+            "Period" : "1710-1720",
+            "Entity": "Lorem Ipsum Entity"
+        },
+        {
+            "Title" : "Sit Amet Title",
+            "Period" : "2012 - 2013",
+            "Entity": "Sit Amet Entity"
+        }
+    ],
+    "LanguageEntries" : [
+        {
+            "Name" : "Spanish",
+            "Level" : "Native"
+        },
+        {
+            "Name" : "English",
+            "Level" : "Complete professional competence"
+        }
+    ]
+}
