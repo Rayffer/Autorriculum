@@ -1,4 +1,5 @@
 from docxtpl import DocxTemplate
+from docxtpl import docx
 import json
 import argparse
 
@@ -13,11 +14,25 @@ parser.add_argument("resultPath", nargs='?', help="The path to write the result 
 args = parser.parse_args()
 
 print("Loading template from: " + args.templatePath)
-doc = DocxTemplate(args.templatePath)
+
+try:
+    doc = DocxTemplate(args.templatePath)
+except docx.opc.exceptions.PackageNotFoundError:
+    print("ERROR: Could not find template file, please make sure the path is valid")
+    exit()
 
 print("Loading and parsing JSON from: " + args.informationFile)
-with open(args.informationFile, "r", encoding='utf8') as infile:
-    templateInfo = json.loads(infile.read())
+try:
+    with open(args.informationFile, "r", encoding='utf8') as infile:
+        templateInfo = json.loads(infile.read())
+except FileNotFoundError:
+    print("ERROR: Could not find information file, please make sure the path is valid")
+    exit()
+except json.decoder.JSONDecodeError as err:
+    print("ERROR: The informationFile has JSON errors, review that is has no JSON errors and try again")
+    print("    Additional Error Info: parsing failed on position " + str(err.pos) + ", line:" + str(err.lineno) + ", colno:" + str(err.colno))
+    exit()
+
 print("Printing information on the template")
 doc.render(templateInfo)
 
