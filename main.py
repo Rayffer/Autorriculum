@@ -8,7 +8,7 @@ parser.add_argument("templatePath", nargs='?', help="The path to the template to
 parser.add_argument("informationFile", nargs='?', help="The path to the file containing the information to use in a json format (default: %(default)s)", 
     type=str, default="information.json")
 parser.add_argument("resultPath", nargs='?', help="The path to write the result file in (default: %(default)s)", 
-    type=str, default="result.docx")
+    type=str, default="result")
 
 args = parser.parse_args()
 
@@ -23,9 +23,9 @@ doc.render(templateInfo)
 
 try:
     print("Attempting to save the result in the document: " + args.resultPath)
-    doc.save(args.resultPath)
+    doc.save(args.resultPath + ".docx")
 except PermissionError:
-    print("Cannot access the file, please close it and try again")
+    print("ERROR: Cannot access the file, please close it and try again")
     exit()
 
 print("Document saved successfully")
